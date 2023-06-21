@@ -11,7 +11,7 @@ This package was created for the purpose of examining some of the functional pro
 
 ## Usage
 
-Add package dependency with `go get -u github.com/rlbaker/fn@v0.1.0`
+Add package dependency: `go get -u github.com/rlbaker/fn@v0.1.0`
 
 ```go
 package main
