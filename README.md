@@ -6,7 +6,7 @@ The `fn` package implements a variety functional programming helpers using Go ge
 
 ### `Reduce`
 
-Applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single output value.
+Applies a function to an accumulator and each element in the slice (from left to right) to reduce it to a single output value.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -18,7 +18,7 @@ fmt.Println(result) // 15
 
 ### `Fold`
 
-Reduces a list of items into a single output, by applying a binary function to pairs of items, starting from the first item and the second, until the end of the list.
+Reduces a slice into a single output, by applying a binary function to pairs of elements, starting from the first element and the second, until the end of the slice.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -30,7 +30,7 @@ fmt.Println(result) // 120
 
 ### `Map`
 
-Creates a new array populated with the results of calling a provided function on every element in the input array.
+Creates a new slice populated with the results of calling a provided function on every element in the input slice.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -42,7 +42,7 @@ fmt.Println(result) // [1 4 9 16 25]
 
 ### `FlatMap`
 
-Similar to `Map`, but each input item can be mapped to zero or more output items (so `func` should return a slice of zero or more items).
+Similar to `Map`, but each input element can be mapped to zero or more output elements, each of which will be appended to the result slice.
 
 ```go
 input := []int{1, 2, 3}
@@ -54,7 +54,7 @@ fmt.Println(result) // [1 1 2 4 3 9]
 
 ### `Filter`
 
-Creates a new array with all elements that pass the test implemented by the provided function.
+Creates a new slice with all elements that pass the test implemented by the provided function.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -66,7 +66,7 @@ fmt.Println(result) // [2 4]
 
 ### `Each`
 
-Executes a provided function once for each array element.
+Executes a provided function once for each slice element.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -77,7 +77,7 @@ fn.Each(input, func(i int) {
 
 ### `Some`
 
-Tests whether at least one element in the array passes the test implemented by the provided function.
+Tests whether at least one element in the slice passes the test implemented by the provided function.
 
 
 ```go
@@ -90,7 +90,7 @@ fmt.Println(result) // true
 
 ### `Every`
 
-Tests whether all elements in the array pass the test implemented by the provided function.
+Tests whether all elements in the slice pass the test implemented by the provided function.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -102,7 +102,7 @@ fmt.Println(result) // true
 
 ### `Count`
 
-Counts the number of elements in the array that pass the test implemented by the provided function.
+Counts the number of elements in the slice that pass the test implemented by the provided function.
 
 ```go
 input := []int{1, 2, 3, 4, 5}
@@ -124,7 +124,7 @@ fmt.Println(len(result)) // 2
 
 ### `Flatten`
 
-Flattens a nested slice (the slice of slices) into a single slice.
+Flattens a nested slice (slice of slices) into a single slice.
 
 ```go
 input := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
