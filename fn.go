@@ -10,7 +10,7 @@ func Reduce[T, U any](input []T, init U, reducefn func(acc U, curr T) U) U {
 	return acc
 }
 
-func Fold[T, U any](input []T, foldf func(acc T, curr T) T) T {
+func Fold[T any](input []T, foldf func(acc T, curr T) T) T {
 	return Reduce(input[1:], input[0], func(acc T, curr T) T {
 		return foldf(acc, curr)
 	})

@@ -1,133 +1,44 @@
 # fn
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/rlbaker/fn.svg)](https://pkg.go.dev/github.com/rlbaker/fn)
+
 The `fn` package implements a variety functional programming helpers using Go generics. All functions are implemented using the provided `Reduce` function.
 
-## Functions
+## Usage
 
-### `Reduce`
-
-Applies a function to an accumulator and each element in the slice (from left to right) to reduce it to a single output value.
+Add package dependency with `go get -u github.com/rlbaker/fn`
 
 ```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Reduce(input, 0, func(acc int, curr int) int {
-	return acc + curr
-})
-fmt.Println(result) // 15
+package main
+
+import "github.com/rlbaker/fn"
+
+
+func main() {
+	input := []int{1, 2, 3, 4, 5}
+
+	reduced := Reduce(input, 0, func(acc int, curr int) int {
+		return acc + curr
+	})
+	fmt.Println(reduced) // 15
+
+    mapped := Map(input, func(x int) int {
+        return x * x
+    })
+	fmt.Println(mapped) // [1 4 9 16 25]
+}
 ```
 
-### `Fold`
+## Available Functions
 
-Reduces a slice into a single output, by applying a binary function to pairs of elements, starting from the first element and the second, until the end of the slice.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Fold(input, func(acc int, curr int) int {
-	return acc * curr
-})
-fmt.Println(result) // 120
-```
-
-### `Map`
-
-Creates a new slice populated with the results of calling a provided function on every element in the input slice.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Map(input, func(i int) int {
-	return i * i
-})
-fmt.Println(result) // [1 4 9 16 25]
-```
-
-### `FlatMap`
-
-Similar to `Map`, but each input element can be mapped to zero or more output elements, each of which will be appended to the result slice.
-
-```go
-input := []int{1, 2, 3}
-result := fn.FlatMap(input, func(i int) []int {
-	return []int{i, i * i}
-})
-fmt.Println(result) // [1 1 2 4 3 9]
-```
-
-### `Filter`
-
-Creates a new slice with all elements that pass the test implemented by the provided function.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Filter(input, func(i int) bool {
-	return i%2 == 0
-})
-fmt.Println(result) // [2 4]
-```
-
-### `Each`
-
-Executes a provided function once for each slice element.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-fn.Each(input, func(i int) {
-	fmt.Println(i)
-})
-```
-
-### `Some`
-
-Tests whether at least one element in the slice passes the test implemented by the provided function.
-
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Some(input, func(i int) bool {
-	return i > 4
-})
-fmt.Println(result) // true
-```
-
-### `Every`
-
-Tests whether all elements in the slice pass the test implemented by the provided function.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Every(input, func(i int) bool {
-	return i < 6
-})
-fmt.Println(result) // true
-```
-
-### `Count`
-
-Counts the number of elements in the slice that pass the test implemented by the provided function.
-
-```go
-input := []int{1, 2, 3, 4, 5}
-result := fn.Count(input, func(i int) bool {
-	return i%2 == 0
-})
-fmt.Println(result) // 2
-```
-
-### `CompactNil`
-
-Removes all nil values from the slice.
-
-```go
-input := []*int{nil, new(int), nil, new(int)}
-result := fn.CompactNil(input)
-fmt.Println(len(result)) // 2
-```
-
-### `Flatten`
-
-Flattens a nested slice (slice of slices) into a single slice.
-
-```go
-input := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-result := fn.Flatten(input)
-fmt.Println(result) // [1 2 3 4 5 6 7 8 9]
-```
+- `Reduce` applies a function to an accumulator and each element in the slice (from left to right) to reduce it to a single output value.
+- `Fold` reduces a slice into a single output, by applying a binary function to pairs of elements, starting from the first element and the second, until the end of the slice.
+- `Map` creates a new slice populated with the results of calling a provided function on every element in the input slice.
+- `FlatMap` is similar to `Map`, but each input element can be mapped to zero or more output elements, each of which will be appended to the result slice.
+- `Filter` creates a new slice with all elements that pass the test implemented by the provided function.
+- `Each` executes a provided function once for each slice element.
+- `Some` tests whether at least one element in the slice passes the test implemented by the provided function.
+- `Every` tests whether all elements in the slice pass the test implemented by the provided function.
+- `Count` counts the number of elements in the slice that pass the test implemented by the provided function.
+- `CompactNil` removes all nil values from the slice.
+- `Flatten` flattens a nested slice (slice of slices) into a single slice.
