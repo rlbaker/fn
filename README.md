@@ -2,7 +2,12 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/rlbaker/fn.svg)](https://pkg.go.dev/github.com/rlbaker/fn)
 
-The `fn` package implements a variety functional programming helpers using Go generics. All functions are implemented using the provided `Reduce` function.
+The `fn` package implements a variety functional programming helpers using Go generics.
+All functions are implemented using the provided `Reduce` function.
+
+You probably don't need this package.
+In most situations a `for` loop will be more idiomatic and consistent with other Go code.
+This package was created for the purpose of examining some of the functional programming patterns that _could_ be replicated using Go generics.
 
 ## Usage
 
