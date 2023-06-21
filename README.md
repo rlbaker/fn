@@ -6,7 +6,7 @@ The `fn` package implements a variety functional programming helpers using Go ge
 
 ## Usage
 
-Add package dependency with `go get -u github.com/rlbaker/fn`
+Add package dependency with `go get -u github.com/rlbaker/fn@v0.1.0`
 
 ```go
 package main
