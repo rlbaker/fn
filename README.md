@@ -13,7 +13,6 @@ package main
 
 import "github.com/rlbaker/fn"
 
-
 func main() {
 	input := []int{1, 2, 3, 4, 5}
 
@@ -22,9 +21,9 @@ func main() {
 	})
 	fmt.Println(reduced) // 15
 
-    mapped := Map(input, func(x int) int {
-        return x * x
-    })
+	mapped := Map(input, func(x int) int {
+		return x * x
+	})
 	fmt.Println(mapped) // [1 4 9 16 25]
 }
 ```
