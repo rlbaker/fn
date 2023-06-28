@@ -2,10 +2,10 @@ package fn
 
 import "fmt"
 
-func ExampleReduce() {
+func ExampleFold() {
 	input := []int{1, 2, 3, 4, 5}
 
-	result := Reduce(input, 0, func(acc int, curr int) int {
+	result := Fold(input, 0, func(acc int, curr int) int {
 		return acc + curr
 	})
 
@@ -13,10 +13,10 @@ func ExampleReduce() {
 	// Output: 15
 }
 
-func ExampleFold() {
+func ExampleReduce() {
 	input := []int{1, 2, 3, 4, 5}
 
-	result := Fold(input, func(acc int, curr int) int {
+	result := Reduce(input, func(acc int, curr int) int {
 		return acc * curr
 	})
 
